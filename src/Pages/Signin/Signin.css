@@ -1,0 +1,111 @@
+#signin_page{
+    background: #fff;
+}
+.signin_page_wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background:#fff;
+    padding-left: 193.4px;
+    width: 100%;
+    height: 100%;
+}
+.signin_page_input_box{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10.4px;
+}
+.signin_page_heading{
+    width: 497px;
+    font-size: 34.4px;
+    font-weight: 700;
+    color: #11175D;
+    margin-bottom: 13px;
+}
+.signin_page_pera{
+    font-size: 20.4px;
+    font-weight: 400;
+    line-height: 140%;
+    color: #000000;
+    margin-bottom: 5px;
+}
+.signin_page_input_group{
+    width: 368px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20.4px;
+}
+.inputbox div{
+    width: 368px;
+}
+.inputbox_password{
+    width: 368px;
+    position: relative;
+}
+.inputbox_password div{
+    width: 368px;
+}
+.open_eye {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+.closs_eye{
+    position: absolute;
+    right:20px;
+    top: 20px;
+}
+.sigin_err{
+    font-size: 14px;
+    font-weight: 500;
+    color: red;
+    margin-top: 8px;
+}
+.signin_page_input_image{
+    width: 683px;
+    height:100vh;
+    overflow: hidden;
+}
+.signin_page_input_image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.signin_page_btn{
+    margin-top: 5px;
+}
+.btn {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 18px 154px;
+    border-radius: 86px;
+    cursor: pointer;
+    border: none;
+    background: #5F35F5;
+    color:#fff;
+}
+.signin_page_signup{
+    width: 368px;
+    text-align: center;
+    margin-top: 5px;
+}
+.signin_page_span{
+    font-size: 13.34px;
+    font-weight: 400;
+    color: #03014C;
+    line-height: 140%;
+}
+.signin_page_em{
+    font-size: 13.34px;
+    font-weight: 700;
+    color: #EA6C00;
+    cursor: pointer;
+    line-height: 140%;
+}
+/*=========================== main page ========================*/
+.signin_page_signup_main_page{
+    width: 368px;
+    text-align: center;
+}
+
+

@@ -1,0 +1,36 @@
+#groups_users{
+    margin: 0;
+    padding: 0;
+}
+.groups_users_wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.groups_users_heading{
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.groups_users_three_dot_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #ece2e2;
+    cursor: pointer;
+}
+.groups_users_three_dot_btn{
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.groups_users_three_dot{
+    font-size: 18px;
+    color: #5F35F5;
+    cursor: pointer;
+}

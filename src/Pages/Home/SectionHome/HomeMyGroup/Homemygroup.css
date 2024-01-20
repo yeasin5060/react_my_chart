@@ -1,0 +1,72 @@
+#my_group{
+    padding: 10px 0;
+    width: 457px;
+    height: 377px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    background: #fff;
+    border-radius: 20px;
+    overflow-y: scroll;
+}
+.my_group_wrapper_box{
+    padding: 30px;
+}
+.my_group_profile_wrapper_box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    padding-right: 30px;
+    margin-top:34px ;
+}
+.my_group_profile_wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.452);
+} 
+.my_group_profile_wrapper:last-child{
+    border-bottom: none;
+}
+.my_group_profile_box{
+    display: flex;
+    justify-content: left;
+    column-gap: 10px;
+    align-items: center;
+}
+.my_group_profile_image{
+    width: 52.182px;
+    height: 54.092px;
+    border-radius: 50%;
+}
+.my_group_profile_image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.my_group_profile_name{
+    margin-left: 10px;
+}
+.my_group_profile_user_name{
+    color: #000;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.my_group_time_jon{
+    color: rgba(0, 0, 0, 0.50);
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.my_group_profile_online{
+    color: rgba(0, 0, 0, 0.50);
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 2px;
+}

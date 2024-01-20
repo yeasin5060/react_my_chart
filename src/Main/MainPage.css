@@ -1,0 +1,49 @@
+.main_page{
+    width: 100%;
+    height: 100vh;
+    border-radius: 20px;
+    background: #5F35F5;
+}
+.main_page{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+    row-gap: 60px;
+}
+.main_profile_box{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #fff;
+}
+.profile_iamge{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.main_page_link_item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 57px;
+}
+.main_page_button{
+    background: transparent;
+    border: none;
+}
+.page_link{
+    font-size: 40px;
+    color: #fff;
+    background: transparent;
+    cursor: pointer;
+}
+.page_link.active {
+    padding: 20px 50px;
+    background: #fff;
+    color: #5F35F5;
+    border-radius: 20px;
+}
