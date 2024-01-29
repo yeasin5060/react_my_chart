@@ -1,0 +1,39 @@
+#notification_inter{
+    width: 100%;
+    background: #fff;
+    border-radius: 20px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    margin: 36px 30px;
+}
+.notification_inter_wrapper{
+    width: 100%;
+    height: 650px;
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    row-gap: 33px;
+    padding: 61px 41px;
+    overflow-y: scroll;
+}
+.notification_inter_wrapper_box{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    column-gap: 43px;
+    padding-bottom: 53px;
+    border-bottom: 1px solid #000;
+}
+.notification_inter_wrapper_box:last-child{
+    border-bottom: none;
+}
+.notification_icon{
+    font-size: 36px;
+    color: #000;
+}
+.notification_message{
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

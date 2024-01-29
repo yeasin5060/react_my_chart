@@ -13,6 +13,8 @@ import { IoClose } from "react-icons/io5";
 import { IoIosEye } from "react-icons/io";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { Modal, Typography } from '@mui/material';
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: 'absolute',
@@ -36,6 +38,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Login = () => {
 
+  const auth = getAuth();
+  const navigate = useNavigate();
   let [ formdata , setFormdata] = useState({
     email: "",
     password: ""
@@ -45,7 +49,25 @@ const Login = () => {
     setFormdata({...formdata,[name]:value})
   }
   let loginBtn = ()=>{
-     setLoginvalidationerros(validaiton(formdata))
+    setLoginvalidationerros(validaiton(formdata))
+      signInWithEmailAndPassword(auth, formdata.email, formdata.password)
+        .then((userCredential) => {
+             if(userCredential.user.emailVerified){
+                navigate("/home")
+                console.log(userCredential)
+             }else{
+                signOut(auth).then(() => {
+                  setLoginvalidationerros({email:"Verify your email"});
+                });
+             }
+        }).catch((error) => {
+          const errorCode = error.code;
+            if(errorCode == "auth/invalid-credential"){
+              setLoginvalidationerros({email:"Signin your email"});
+            }else{
+              loginvalidationerros.email = " ";
+            }
+          });
   }
 
   let [loginvalidationerros , setLoginvalidationerros] = useState({})
@@ -94,6 +116,30 @@ const Login = () => {
   let forgetclose = ()=>{
     setOpen(false)
   }
+
+  let [sendLink, setSendLink] = useState({})
+  let handlesend = ()=>{
+     setSendLink(linkValidation(formdata))
+  }
+  function linkValidation(formdata){
+      sendLink = {}
+      let email_pattern = /^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/;
+      // ====================== email ==============
+
+      if(formdata.email == ""){
+        sendLink.email = "Email is Repuired!"
+    }
+    else{
+        if(email_pattern.test(formdata.email)){
+          sendLink.email = " ";
+        }
+        else{
+          sendLink.email = "Inter validate Email";
+        }
+      }
+      return (sendLink);
+  }
+
   return (
     <section id='login_page'>
       <Box sx = {{flexGrow : 1}}>
@@ -160,8 +206,8 @@ const Login = () => {
           </Typography>
           <div className='login_page_forget_email'>
             <TextField id="outlined-basic" type='email' label=" Email Address" variant="standard" name = "email" onChange={handleform} />
-            {loginvalidationerros.email && <p className='login_err'>{loginvalidationerros.email}</p>}
-            <button className='forget_password_btn' >Send link</button>
+            {sendLink.email && <p className='forget_err'>{sendLink.email}</p>}
+            <button onClick={handlesend} className='forget_password_btn' >Send link</button>
           </div>
         </Box>
       </Modal>

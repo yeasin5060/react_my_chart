@@ -1,0 +1,8 @@
+#setting_main_page{
+    width: 100%;
+    background: #fff;
+}
+.setting_and_account_wrappwr{
+    display: flex;
+    justify-content: space-between;
+}

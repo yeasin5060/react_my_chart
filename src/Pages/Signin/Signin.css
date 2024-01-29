@@ -73,16 +73,25 @@
 }
 .signin_page_btn{
     margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 86px;
+    background: #5F35F5;
+    cursor: pointer;
+    width: 75%;
 }
 .btn {
     font-size: 18px;
     font-weight: 600;
-    padding: 18px 154px;
-    border-radius: 86px;
-    cursor: pointer;
     border: none;
-    background: #5F35F5;
+    background: transparent;
+    padding: 13px 140px;
     color:#fff;
+    cursor: pointer;
+}
+.oval{
+    padding: 13px 0;
 }
 .signin_page_signup{
     width: 368px;
@@ -103,9 +112,3 @@
     line-height: 140%;
 }
 /*=========================== main page ========================*/
-.signin_page_signup_main_page{
-    width: 368px;
-    text-align: center;
-}
-
-

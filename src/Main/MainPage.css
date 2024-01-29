@@ -19,10 +19,19 @@
     overflow: hidden;
     background: #fff;
 }
-.profile_iamge{
+.main_profile_box img{
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.main_page_profile_name_box{
+    text-align: center;
+    margin-top: 10px;
+}
+.main_page_profile_name{
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
 }
 .main_page_link_item{
     display: flex;

@@ -6,23 +6,64 @@ import signin from '../../images/signin.png'
 import { Link } from 'react-router-dom';
 import { IoIosEye } from "react-icons/io";
 import { IoEyeOffOutline } from "react-icons/io5";
+import { Oval } from 'react-loader-spinner';
+import { getAuth, createUserWithEmailAndPassword ,sendEmailVerification ,updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { getDatabase, ref, set } from "firebase/database";
 
 
 const Sigin = () => {
 
+  const db = getDatabase();
+  const auth = getAuth();
+  const navigate = useNavigate();
   let [ sigindata , setSigindata] = useState({
     email: "",
     fullname:"",
     password: ""
-  })
+  });
   let handleSigin = (e)=>{
     let {name , value} = e.target
     setSigindata({...sigindata,[name]:value})
-  }
+  };
   let signbtn = ()=>{
-    console.log(sigindata)
     setSiginvalidationerros(validaiton(sigindata))
-}
+    setReactLoder(true)
+    createUserWithEmailAndPassword(auth, sigindata.email, sigindata.password)
+    .then((userCredential) => {
+      sendEmailVerification(auth.currentUser)
+      .then(() => {
+        updateProfile(auth.currentUser, {
+          displayName: sigindata.fullname, 
+          photoURL: "https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="
+        }).then(() => {
+          set(ref(db, 'usersdata/' + userCredential.user.uid), {
+            username: userCredential.user.displayName,
+            email:userCredential.user.email,
+            profileImage :userCredential.user.photoURL
+          }).then(()=>{
+            navigate("/login")
+            console.log(userCredential)
+          });
+        });
+      });
+
+  }).catch((error) => {
+    const errorCode = error.code;
+    if(errorCode == "auth/email-already-in-use"){
+      siginvalidationerros.email = " Email already exised";
+    }
+    else{
+      siginvalidationerros.email = "";
+      setReactLoder(false)
+    }
+  });
+   setSigindata({
+    email: "",
+    fullname: "",
+    password: ""
+   });
+};
 
       //========== validation ==================
   let [siginvalidationerros , setSiginvalidationerros] = useState({})
@@ -73,6 +114,7 @@ const Sigin = () => {
   }
 
   let [checktype , setChecktype] = useState(false)
+  let [ reactLoder , setReactLoder] = useState (false)
 
   return (
     <section id='signin_page'>
@@ -85,15 +127,15 @@ const Sigin = () => {
               </div>
               <div className='signin_page_input_group'>
                 <div className='inputbox'>
-                  <TextField id="outlined-basic" type='text' label=" Email Address" name ="email" onChange={handleSigin} variant="outlined"/>
+                  <TextField id="outlined-basic" value={setSigindata.email} type='text' label=" Email Address" name ="email" onChange={handleSigin} variant="outlined"/>
                   {siginvalidationerros.email && <p className='sigin_err'>{siginvalidationerros.email}</p>}
                 </div>
                 <div className='inputbox'>
-                  <TextField id="outlined-basic" type='email' label="Ful name " name ="fullname" onChange={handleSigin} variant="outlined" />
+                  <TextField id="outlined-basic"  value={setSigindata.fullname} type='email' label="Ful name " name ="fullname" onChange={handleSigin} variant="outlined" />
                   {siginvalidationerros.fullname && <p className='sigin_err'>{siginvalidationerros.fullname}</p>}
                 </div>
                 <div className='inputbox_password'>
-                  <TextField id="outlined-basic" type={checktype ? "password" : "text"} label=" Password" name ="password" onChange={handleSigin} variant="outlined" />
+                  <TextField id="outlined-basic"  value={setSigindata.password} type={checktype ? "password" : "text"} label=" Password" name ="password" onChange={handleSigin} variant="outlined" />
                     {  
                       checktype  
                       ?
@@ -105,13 +147,23 @@ const Sigin = () => {
                 </div>
               </div>
               <div className='signin_page_btn'>
-                <button className='btn' onClick={signbtn}>Sign up</button>
+                  {
+                    reactLoder ?
+                    (<Oval
+                      visible={true}
+                      height="30"
+                      width="30"
+                      color="#fff"
+                      ariaLabel="oval-loading"
+                      wrapperStyle={{}}
+                      wrapperClass="oval"
+                      />)
+                      :
+                      <button className='btn' onClick={signbtn}>Sign up</button>
+                  }
               </div>
               <div className='signin_page_signup'>
                 <span className='signin_page_span'>Already  have an account ?<Link className='signin_page_em' to = "login">Sign In</Link></span>
-              </div>
-              <div className='signin_page_signup_main_page'>
-                <span className='signin_page_span'>Already  have an account go to the ?<Link className='signin_page_em' to = "mainpage">main page</Link></span>
               </div>
             </div>
             <div className='signin_page_input_image'>

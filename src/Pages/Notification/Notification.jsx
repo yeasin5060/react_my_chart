@@ -1,8 +1,13 @@
 import React from 'react'
+import Notificationinput from './NotificationSection/NotificatinInput/Notificationinput'
+import Notificationinter from './NotificationSection/NotificationInter/Notificationinter'
 
 const Notification = () => {
   return (
-    <h1>Notification</h1>
+    <>
+      <Notificationinput/>
+      <Notificationinter/>
+    </>
   )
 }
 

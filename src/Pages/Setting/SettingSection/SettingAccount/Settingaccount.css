@@ -1,0 +1,63 @@
+.setting_account{
+    width: 50%;
+    background: #fff;
+    border-radius: 20px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    margin: 36px 30px;
+    padding: 26px;
+}
+.setting_account_heading{
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.setting_account_wrapper_box{
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    row-gap: 37px;
+    margin-left: 64px;
+    margin-top: 72px;
+}
+.setting_account_wrapper{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    cursor: pointer;
+    column-gap: 36px;
+}
+.setting_account_link_btn{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.setting_account_key_icon{
+    font-size: 22px;
+    color: #000;
+    background: transparent;
+    cursor: pointer;
+}
+.setting_account_icon_name a{
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    cursor: pointer;
+}
+.setting_account_chat_btn{
+    margin-top: 270px;
+    text-align: center;
+}
+.setting_account_chat_button{
+    color: rgba(0, 0, 0, 0.50);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}

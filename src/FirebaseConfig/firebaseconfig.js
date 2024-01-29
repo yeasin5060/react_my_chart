@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBb3F4WGAgx9G0wq4elz6ukk_XM9ULmSaY",
-  authDomain: "mychat-5d097.firebaseapp.com",
-  projectId: "mychat-5d097",
-  storageBucket: "mychat-5d097.appspot.com",
-  messagingSenderId: "694813305462",
-  appId: "1:694813305462:web:c5836f29ce46cd0bf34d57"
+  apiKey: "AIzaSyAp2TCraLqAjPAKQlep1kAY6q7Wi6qlweQ",
+  authDomain: "reactmychat.firebaseapp.com",
+  projectId: "reactmychat",
+  storageBucket: "reactmychat.appspot.com",
+  messagingSenderId: "924466711885",
+  appId: "1:924466711885:web:4652ff313a75ffebc17b04"
 };
 
 // Initialize Firebase

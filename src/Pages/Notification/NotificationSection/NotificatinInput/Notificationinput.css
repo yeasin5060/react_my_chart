@@ -1,0 +1,43 @@
+.notification_input_box{
+    width: 100%;
+    background: #fff;
+    border-radius: 20px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    margin: 10px 30px;
+    padding: 15px 50px 15px 50px;
+}
+.notification_input{
+    width: 100%;
+    color: #000;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border: none;
+    outline: none;
+    background: transparent;
+    position: relative;
+}
+.notification_input_btn{
+    position: absolute;
+    right: 10px;
+    top: 17px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.notification_search{
+    position: absolute;
+    left: 20px;
+    top: 17px;
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    color: #000;
+}
+.notifivation_input_three_dot{
+    cursor: pointer;
+    font-size: 18px;
+    color: #5F35F5;
+    background:transparent;
+}
