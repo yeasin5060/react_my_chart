@@ -52,14 +52,14 @@ const Login = () => {
     setLoginvalidationerros(validaiton(formdata))
       signInWithEmailAndPassword(auth, formdata.email, formdata.password)
         .then((userCredential) => {
-             if(userCredential.user.emailVerified){
-                navigate("/home")
-                console.log(userCredential)
-             }else{
-                signOut(auth).then(() => {
-                  setLoginvalidationerros({email:"Verify your email"});
-                });
-             }
+          if(userCredential.user.emailVerified){
+            navigate("/home")
+            console.log(userCredential)
+         }else{
+            signOut(auth).then(() => {
+              setLoginvalidationerros({email:"Verify your email"});
+            });
+         }
         }).catch((error) => {
           const errorCode = error.code;
             if(errorCode == "auth/invalid-credential"){

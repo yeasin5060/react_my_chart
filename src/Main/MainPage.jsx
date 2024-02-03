@@ -27,7 +27,7 @@ const MainPage = () => {
     const navigate = useNavigate()
     let handlelogout = ()=>{
         signOut(auth).then(()=>{
-            navigate("/")
+            navigate("/login")
         })
     }
     const userdata = auth.currentUser;
