@@ -13,6 +13,8 @@ import { IoSettingsOutline } from "react-icons/io5";
 import profile from '../images/profile.png'
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { loginuserdata } from '../Slice/Userslice';
+import { useSelector, useDispatch } from 'react-redux'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -22,11 +24,15 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 const MainPage = () => {
-
+    const count = useSelector((state) => state.logindata.value)
     const auth = getAuth();
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
     let handlelogout = ()=>{
         signOut(auth).then(()=>{
+            localStorage.removeItem("user")
+            dispatch(loginuserdata(null))
             navigate("/login")
         })
     }

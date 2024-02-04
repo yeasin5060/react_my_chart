@@ -15,6 +15,8 @@ import { IoEyeOffOutline } from "react-icons/io5";
 import { Modal, Typography } from '@mui/material';
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import { loginuserdata } from '../../Slice/Userslice';
 
 const style = {
   position: 'absolute',
@@ -40,6 +42,7 @@ const Login = () => {
 
   const auth = getAuth();
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   let [ formdata , setFormdata] = useState({
     email: "",
     password: ""
@@ -53,8 +56,9 @@ const Login = () => {
       signInWithEmailAndPassword(auth, formdata.email, formdata.password)
         .then((userCredential) => {
           if(userCredential.user.emailVerified){
-            navigate("/home")
-            console.log(userCredential)
+            localStorage.setItem("user",JSON.stringify(userCredential))
+            dispatch(loginuserdata(userCredential))
+           navigate("/home")
          }else{
             signOut(auth).then(() => {
               setLoginvalidationerros({email:"Verify your email"});

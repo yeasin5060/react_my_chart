@@ -1,8 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { counterSlice } from './Slice/Userslice'
-
-export const store = configureStore({
+import Userslice from './Slice/Userslice'
+export default configureStore({
   reducer: {
-    counter : counterSlice,
+    logindata:Userslice
   },
 })
