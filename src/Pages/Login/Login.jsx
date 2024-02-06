@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Login.css'
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -58,7 +58,7 @@ const Login = () => {
           if(userCredential.user.emailVerified){
             localStorage.setItem("user",JSON.stringify(userCredential))
             dispatch(loginuserdata(userCredential))
-           navigate("/home")
+            navigate("/home")
          }else{
             signOut(auth).then(() => {
               setLoginvalidationerros({email:"Verify your email"});

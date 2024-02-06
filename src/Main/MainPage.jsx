@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './MainPage.css'
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -24,7 +24,8 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 const MainPage = () => {
-    const count = useSelector((state) => state.logindata.value)
+
+    const alldata = useSelector((state) => state.logindata.value)
     const auth = getAuth();
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -36,6 +37,16 @@ const MainPage = () => {
             navigate("/login")
         })
     }
+    useEffect(()=>{
+        if(alldata){
+            navigate("/home")
+        }
+    },[]);
+    useEffect(()=>{
+        if(!alldata){
+            navigate("/login")
+        }
+    },[])
     const userdata = auth.currentUser;
     console.log(userdata)
   return (
