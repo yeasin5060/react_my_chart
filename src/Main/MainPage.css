@@ -1,8 +1,12 @@
 .main_page{
-    width: 100%;
+    width: 320px;
     height: 100vh;
     border-radius: 20px;
     background: #5F35F5;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
 }
 .main_page{
     display: flex;
@@ -55,4 +59,9 @@
     background: #fff;
     color: #5F35F5;
     border-radius: 20px;
+}
+.pages_box{
+    width: 1500px;
+    height: 100vh;
+    overflow-y: scroll;
 }

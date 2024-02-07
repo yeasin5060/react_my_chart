@@ -73,7 +73,6 @@ const Login = () => {
             }
           });
   }
-
   let [loginvalidationerros , setLoginvalidationerros] = useState({})
 
   function validaiton (formdata){

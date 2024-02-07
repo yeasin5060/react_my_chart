@@ -38,17 +38,16 @@ const MainPage = () => {
         })
     }
     useEffect(()=>{
-        if(alldata){
-            navigate("/home")
-        }
-    },[]);
-    useEffect(()=>{
         if(!alldata){
             navigate("/login")
         }
     },[])
-    const userdata = auth.currentUser;
-    console.log(userdata)
+    useEffect(()=>{
+        if(alldata){
+          navigate("/home")
+      }
+    },[]);
+    console.log(alldata)
   return (
     <>
        <Box sx={{ flexGrow: 1 }}>
@@ -57,10 +56,10 @@ const MainPage = () => {
                 <div className='main_page'>
                     <div className='main_page_profile_box'>
                         <div className ='main_profile_box'>
-                            <img className = "profile_iamge" src={userdata && userdata.photoURL} alt="not found"/>
+                            <img className = "profile_iamge" src={alldata && alldata.photoURL} alt="not found"/>
                         </div>
                         <div className='main_page_profile_name_box'>
-                            <h4 className='main_page_profile_name'>{userdata && userdata.displayName}</h4>
+                            <h4 className='main_page_profile_name'>{alldata && alldata.displayName}</h4>
                         </div>
                     </div>
                     <div className='all_items'>
@@ -85,7 +84,9 @@ const MainPage = () => {
                 </div>
             </Grid>
         <Grid item xs={9}>
-            <Outlet/>
+           <div className='pages_box'>
+                <Outlet/>
+           </div>
         </Grid>
       </Grid>
     </Box>
