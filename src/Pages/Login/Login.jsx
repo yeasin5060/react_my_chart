@@ -56,8 +56,8 @@ const Login = () => {
       signInWithEmailAndPassword(auth, formdata.email, formdata.password)
         .then((userCredential) => {
           if(userCredential.user.emailVerified){
-            localStorage.setItem("user",JSON.stringify(userCredential))
-            dispatch(loginuserdata(userCredential))
+            localStorage.setItem("user",JSON.stringify(userCredential.user))
+            dispatch(loginuserdata(userCredential.user))
             navigate("/home")
          }else{
             signOut(auth).then(() => {
