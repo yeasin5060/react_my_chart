@@ -10,7 +10,6 @@ import { MdOutlineLogout } from "react-icons/md";
 import { AiTwotoneMessage } from "react-icons/ai";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
-import profile from '../images/profile.png'
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { loginuserdata } from '../Slice/Userslice';
