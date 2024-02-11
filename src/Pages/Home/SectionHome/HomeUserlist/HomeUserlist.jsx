@@ -16,7 +16,6 @@ const HomeUserlist = () => {
     useEffect(()=>{
         const userListRef = ref(db, 'usersdata');
             onValue(userListRef, (snapshot) => {
-            const data = snapshot.val();
                let array = []
             snapshot.forEach((item)=>{
                 if(alldata.uid != item.key){
@@ -36,8 +35,8 @@ const HomeUserlist = () => {
             receivername : sendrequestinfo.username,
             receiverimg : sendrequestinfo.profileImage,
             receiveremail : sendrequestinfo.email,
-          });
-          console.log(sendrequestinfo)
+        });
+        alert("Friend Request Succesful")
     }
   return (
     <section id='user_list'>

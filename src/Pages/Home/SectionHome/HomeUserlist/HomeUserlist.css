@@ -115,6 +115,10 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: all linear 0.3s;
+}
+.user_list_profile_add_btn:hover{
+    transform: translateY(-4px);
 }
 .user_list_profile_btn{
     border: none;
