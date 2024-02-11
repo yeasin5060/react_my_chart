@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Homefriendrequest.css'
 import profileone from '../../../../images/profileone.png';
 import Groupusers from '../../../../Components/Groupusers/Groupusers'
-import { getDatabase, ref, onValue , set , push } from "firebase/database";
+import { getDatabase, ref, onValue , set , push ,remove } from "firebase/database";
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react';
 
@@ -24,6 +24,10 @@ const Homefriendrequest = () => {
         });
     },[])
 
+    let  requestdelete = (deleteid)=>{
+        remove(ref(db, 'friendrequest/' + deleteid.id))
+       alert("Delete Done")
+    }
 
   return (
     <section id='friend_request'>
@@ -46,7 +50,8 @@ const Homefriendrequest = () => {
                                     </div>
                                 </div>
                                 <div className='friend_request_profile_add_btn'>
-                                   <button className='friend_request_accept'>Accept</button>
+                                    <button onClick={()=> requestdelete (item)} className='friend_request_accept'>Delete</button>
+                                    <button className='friend_request_accept'>Confirm</button>
                                 </div>
                             </div>
                         ))
