@@ -52,10 +52,10 @@ const Sigin = () => {
     const errorCode = error.code;
     if(errorCode == "auth/email-already-in-use"){
       siginvalidationerros.email = " Email already exised";
+      setReactLoder(false)
     }
     else{
       siginvalidationerros.email = "";
-      setReactLoder(false)
     }
   });
    setSigindata({

@@ -10,8 +10,8 @@ import { MdOutlineLogout } from "react-icons/md";
 import { AiTwotoneMessage } from "react-icons/ai";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
-import { getAuth, signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { getAuth, signOut , } from "firebase/auth";
+import { redirect , useNavigate } from "react-router-dom";
 import { loginuserdata } from '../Slice/Userslice';
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -28,6 +28,8 @@ const MainPage = () => {
     const auth = getAuth();
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const location = window.location.href;
+
 
     let handlelogout = ()=>{
         signOut(auth).then(()=>{
@@ -39,13 +41,13 @@ const MainPage = () => {
     useEffect(()=>{
         if(!alldata){
             navigate("/login")
-        }
+        }else {
+            navigate("/home");
+            if (location === "http://localhost:5173") {
+              redirect("/home");
+            }
+          }
     },[])
-    useEffect(()=>{
-        if(alldata){
-          navigate("/home")
-      }
-    },[]);
     console.log(alldata)
   return (
     <>
