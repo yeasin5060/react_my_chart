@@ -48,7 +48,6 @@ const MainPage = () => {
             }
           }
     },[])
-    console.log(alldata)
   return (
     <>
        <Box sx={{ flexGrow: 1 }}>

@@ -4,7 +4,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { LiaSearchSolid } from "react-icons/lia";
 import { FaPlus } from "react-icons/fa6";
 import Groupusers from '../../../../Components/Groupusers/Groupusers';
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue , set , push } from "firebase/database";
 import { useSelector, useDispatch } from 'react-redux'
 
 const HomeUserlist = () => {
@@ -25,8 +25,20 @@ const HomeUserlist = () => {
             })
             setUserList(array)
         });
-
     },[])
+    let sendrequest = (sendrequestinfo)=>{
+        set(push(ref(db, 'friendrequest')), {
+            senderid : alldata.uid,
+            sendername : alldata.displayName,
+            senderimg : alldata.photoURL,
+            senderemail : alldata.email,
+            receiverid : sendrequestinfo.id,
+            receivername : sendrequestinfo.username,
+            receiverimg : sendrequestinfo.profileImage,
+            receiveremail : sendrequestinfo.email,
+          });
+          console.log(sendrequestinfo)
+    }
   return (
     <section id='user_list'>
         <div className='user_list_search_box_wrapper'>
@@ -59,7 +71,7 @@ const HomeUserlist = () => {
                                     </div>
                                 </div>
                                 <div className='user_list_profile_add_btn'>
-                                    <button className='user_list_profile_btn'>
+                                    <button onClick={() => sendrequest (item)} className='user_list_profile_btn'>
                                         <FaPlus className='user_list_profile_add' />
                                     </button>
                                 </div>

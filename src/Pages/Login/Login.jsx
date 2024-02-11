@@ -13,7 +13,7 @@ import { IoClose } from "react-icons/io5";
 import { IoIosEye } from "react-icons/io";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { Modal, Typography } from '@mui/material';
-import { getAuth, signInWithEmailAndPassword, signOut ,onAuthStateChanged } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { loginuserdata } from '../../Slice/Userslice';
@@ -72,7 +72,6 @@ const Login = () => {
               loginvalidationerros.email = " ";
             }
           });
-    onAuthStateChanged(auth, (currentUser) => {});
   }
   let [loginvalidationerros , setLoginvalidationerros] = useState({})
 
