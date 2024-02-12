@@ -3,8 +3,9 @@ import './HomeUserlist.css'
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { LiaSearchSolid } from "react-icons/lia";
 import { FaPlus } from "react-icons/fa6";
+import { FaMinus } from "react-icons/fa6";
 import Groupusers from '../../../../Components/Groupusers/Groupusers';
-import { getDatabase, ref, onValue , set , push } from "firebase/database";
+import { getDatabase, ref, onValue , set , push ,remove } from "firebase/database";
 import { useSelector, useDispatch } from 'react-redux'
 
 const HomeUserlist = () => {
@@ -12,6 +13,7 @@ const HomeUserlist = () => {
     const alldata = useSelector((state) => state.logindata.value)
     const db = getDatabase();
     let [userList , setUserList] = useState([])
+    let [requesttogol , setRequesttogol] = useState(false)
     
     useEffect(()=>{
         const userListRef = ref(db, 'usersdata');
@@ -37,6 +39,14 @@ const HomeUserlist = () => {
             receiveremail : sendrequestinfo.email,
         });
         alert("Friend Request Succesful")
+        setRequesttogol(true)
+        console.log(sendrequestinfo)
+    }
+    let cancelrequest = (cancel)=>{
+        remove(ref(db, 'friendrequest/' + cancel.id))
+        alert("Request Cancel")
+        setRequesttogol(false)
+        console.log(cancel)
     }
   return (
     <section id='user_list'>
@@ -70,9 +80,17 @@ const HomeUserlist = () => {
                                     </div>
                                 </div>
                                 <div className='user_list_profile_add_btn'>
-                                    <button onClick={() => sendrequest (item)} className='user_list_profile_btn'>
-                                        <FaPlus className='user_list_profile_add' />
-                                    </button>
+                                    {
+                                        requesttogol
+                                        ?
+                                        <button onClick={() => cancelrequest (item)} className='user_list_profile_btn'>
+                                            <FaMinus className='user_list_profile_add' />
+                                        </button>
+                                        :
+                                        <button onClick={() => sendrequest (item)} className='user_list_profile_btn'>
+                                            <FaPlus className='user_list_profile_add' />
+                                        </button>
+                                    }   
                                 </div>
                             </div>
                         ))

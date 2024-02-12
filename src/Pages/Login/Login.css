@@ -51,16 +51,26 @@
 }
 .login_page_btn{
     margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 86px;
+    background: #5F35F5;
+    cursor: pointer;
+    width: 75%;
 }
 .login_btn{
     font-size: 20px;
     font-weight: 600;
-    padding: 16px 113px;
+    padding: 16px 0;
     border-radius: 8px;
     cursor: pointer;
     border: none;
     background: #5F35F5;
     color: #fff;
+}
+.oval{
+    padding: 13px 0;
 }
 .login_page_signin{
     width: 368px;

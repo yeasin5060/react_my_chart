@@ -148,7 +148,8 @@ const Sigin = () => {
               </div>
               <div className='signin_page_btn'>
                   {
-                    reactLoder ?
+                    reactLoder 
+                    ?
                     (<Oval
                       visible={true}
                       height="30"

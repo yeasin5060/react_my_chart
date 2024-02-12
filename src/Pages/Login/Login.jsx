@@ -17,6 +17,7 @@ import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { loginuserdata } from '../../Slice/Userslice';
+import { Oval } from 'react-loader-spinner';
 
 const style = {
   position: 'absolute',
@@ -53,6 +54,7 @@ const Login = () => {
   }
   let loginBtn = ()=>{
     setLoginvalidationerros(validaiton(formdata))
+    setReactLoder(true)
       signInWithEmailAndPassword(auth, formdata.email, formdata.password)
         .then((userCredential) => {
           if(userCredential.user.emailVerified){
@@ -68,6 +70,7 @@ const Login = () => {
           const errorCode = error.code;
             if(errorCode == "auth/invalid-credential"){
               setLoginvalidationerros({email:"Signin your email"});
+              setReactLoder(false)
             }else{
               loginvalidationerros.email = " ";
             }
@@ -117,7 +120,7 @@ const Login = () => {
   const handleClose = () => setOpen(false);
 
   let forgetclose = ()=>{
-    setOpen(false)
+    setOpen(true)
   }
 
   let [sendLink, setSendLink] = useState({})
@@ -142,6 +145,7 @@ const Login = () => {
       }
       return (sendLink);
   }
+  let [ reactLoder , setReactLoder] = useState (false)
 
   return (
     <section id='login_page'>
@@ -175,7 +179,21 @@ const Login = () => {
                   </div>
                 </div>
                 <div className='login_page_btn'>
-                  <button onClick={loginBtn} className='login_btn'>Login to Continue</button>
+                {
+                    reactLoder 
+                    ?
+                    (<Oval
+                      visible={true}
+                      height="30"
+                      width="30"
+                      color="#fff"
+                      ariaLabel="oval-loading"
+                      wrapperStyle={{}}
+                      wrapperClass="oval"
+                      />)
+                      :
+                      <button onClick={loginBtn} className='login_btn'>Login to Continue</button>
+                  }
                 </div>
                 <div className='login_page_signin'>
                   < span className='login_page_span'>Don’t have an account ?<Link className='login_page_em' to = "/">Sign Up</Link></span>
