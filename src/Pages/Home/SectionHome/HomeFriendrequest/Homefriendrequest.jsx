@@ -5,6 +5,7 @@ import Groupusers from '../../../../Components/Groupusers/Groupusers'
 import { getDatabase, ref, onValue , set , push ,remove } from "firebase/database";
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react';
+import { Oval } from 'react-loader-spinner';
 
 const Homefriendrequest = () => {
     const alldata = useSelector((state) => state.logindata.value)
@@ -56,7 +57,17 @@ const Homefriendrequest = () => {
                             </div>
                         ))
                         :
-                        <h1>data nai</h1>
+                        <div className='homefriendrequest_oval_box'>
+                            <Oval
+                                visible={true}
+                                height="60px"
+                                width="60px"
+                                color="#fff"
+                                ariaLabel="oval-loading"
+                                wrapperStyle={{}}
+                                wrapperClass="oval"
+                            />
+                        </div>
                     }
                 </div>
             </Groupusers>

@@ -139,3 +139,10 @@
     line-height: normal;
     margin-top: 2px;
 }
+.homefrienduserlist_oval_box{
+    width: 320px;
+    height: 267px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

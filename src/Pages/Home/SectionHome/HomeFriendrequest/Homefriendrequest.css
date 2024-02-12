@@ -82,3 +82,10 @@
     line-height: normal;
     margin-top: 2px;
 }
+.homefriendrequest_oval_box{
+    width: 357px;
+    height: 267px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

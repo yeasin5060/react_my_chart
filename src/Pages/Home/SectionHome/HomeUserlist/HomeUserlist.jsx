@@ -7,6 +7,7 @@ import { FaMinus } from "react-icons/fa6";
 import Groupusers from '../../../../Components/Groupusers/Groupusers';
 import { getDatabase, ref, onValue , set , push ,remove } from "firebase/database";
 import { useSelector, useDispatch } from 'react-redux'
+import { Oval } from 'react-loader-spinner';
 
 const HomeUserlist = () => {
 
@@ -95,7 +96,17 @@ const HomeUserlist = () => {
                             </div>
                         ))
                         :
-                        <h1>data nai</h1>
+                        <div className='homefrienduserlist_oval_box'>
+                            <Oval
+                                visible={true}
+                                height="60"
+                                width="60"
+                                color="#fff"
+                                ariaLabel="oval-loading"
+                                wrapperStyle={{}}
+                                wrapperClass="oval"
+                            />
+                        </div>
                     }
                 </div>
             </Groupusers>
