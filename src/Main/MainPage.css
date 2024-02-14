@@ -22,11 +22,26 @@
     border-radius: 50%;
     overflow: hidden;
     background: #fff;
+    position: relative;
+    cursor: pointer;
 }
 .main_profile_box img{
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.image_overlay{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #242121cc;
+    border-radius: 50%;
+    left: 0;
+    bottom: -100px;
+}
+.main_profile_box:hover .image_overlay{
+    bottom: 0;
+    transition: all linear 0.3s;
 }
 .main_page_profile_name_box{
     text-align: center;
@@ -64,4 +79,11 @@
     width: 1500px;
     height: 100vh;
     overflow-y: scroll;
+}
+.all_contant_head{
+    font-size: 32px;
+    font-weight: 600;
+    color: #000;
+    line-height: 150%;
+    text-transform: capitalize;
 }
