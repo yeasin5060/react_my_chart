@@ -30,6 +30,22 @@ const Homefriendrequest = () => {
        alert("Delete Done")
     }
 
+    let requestconfirm = (acceptinfo)=>{
+        set(push(ref(db, 'userfriend')), {
+            whosenderid : acceptinfo.senderid,
+            whosendername : acceptinfo.sendername,
+            whosenderemail : acceptinfo.senderemail,
+            whosenderimg : acceptinfo.senderimg,
+            whoreceivid : alldata.uid,
+            whoreceivname :alldata.displayName,
+            whoreceivemail : alldata.email,
+            whoreceivimg :alldata.photoURL,
+
+        });
+        alert("Accept Succesful")
+        console.log(acceptinfo)
+    }
+
   return (
     <section id='friend_request'>
         <div className='friend_request_wrapper_box'>
@@ -51,8 +67,8 @@ const Homefriendrequest = () => {
                                     </div>
                                 </div>
                                 <div className='friend_request_profile_add_btn'>
-                                    <button onClick={()=> requestdelete (item)} className='friend_request_accept'>Delete</button>
-                                    <button className='friend_request_accept'>Confirm</button>
+                                <button onClick={()=> requestdelete (item)}                     className='friend_request_accept'>Delete</button>
+                                    <button onClick={()=> requestconfirm(item)} className='friend_request_accept'>Confirm</button>
                                 </div>
                             </div>
                         ))
