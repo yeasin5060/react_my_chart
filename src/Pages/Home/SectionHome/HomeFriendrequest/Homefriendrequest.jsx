@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './Homefriendrequest.css'
-import profileone from '../../../../images/profileone.png';
 import Groupusers from '../../../../Components/Groupusers/Groupusers'
 import { getDatabase, ref, onValue , set , push ,remove } from "firebase/database";
 import { useSelector, useDispatch } from 'react-redux'
@@ -41,7 +40,9 @@ const Homefriendrequest = () => {
             whoreceivemail : alldata.email,
             whoreceivimg :alldata.photoURL,
 
-        });
+        }).then (()=>{
+            remove(ref(db, 'friendrequest/' + acceptinfo.id))
+        })
         alert("Accept Succesful")
         console.log(acceptinfo)
     }
