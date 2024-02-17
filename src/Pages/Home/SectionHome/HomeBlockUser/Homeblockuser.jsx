@@ -24,7 +24,23 @@ const Homeblockuser = () => {
             setBlockList(array)
         });
     },[])
-    console.log(blockList)
+
+    let handelunblockuser = (unblockinfo)=>{
+       set(push(ref(db,"unblockuser")),{
+        whereofunblockid : unblockinfo. whereofblockid,
+        whereofunblockname : unblockinfo. whereofblockname,
+        whereofunblockemail :unblockinfo.whereofblockemail,
+        whereofunblockimg : unblockinfo. whereofblockimg,
+        receiverid : alldata.uid,
+        receivername :alldata.displayName,
+        receiveremail : alldata.email,
+        receiverimg :alldata.photoURL,
+       }).then (()=>{
+        remove(ref(db, 'blockedusers/' + unblockinfo.id))
+    })
+    alert("Unblock Succesful")
+    console.log(unblockinfo)
+    }
 
   return (
     <section id='block_user'>
@@ -47,7 +63,7 @@ const Homeblockuser = () => {
                                 </div>
                             </div>
                             <div className='block_user_profile_add_btn'>
-                               <button className='block_user_accept'>unblock</button>
+                               <button onClick={()=>handelunblockuser (item)} className='block_user_accept'>unblock</button>
                             </div>
                         </div>
                     ))
