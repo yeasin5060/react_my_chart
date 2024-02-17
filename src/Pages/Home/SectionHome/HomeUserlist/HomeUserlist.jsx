@@ -44,10 +44,7 @@ const HomeUserlist = () => {
         console.log(sendrequestinfo)
     }
     let cancelrequest = (cancel)=>{
-        remove(ref(db, 'friendrequest/' + cancel.id))
-        alert("Request Cancel")
-        setRequesttogol(false)
-        console.log(cancel)
+        
     }
   return (
     <section id='user_list'>

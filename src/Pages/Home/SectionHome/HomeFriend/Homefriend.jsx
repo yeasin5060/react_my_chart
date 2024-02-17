@@ -6,6 +6,7 @@ import Pera from '../../../../Utilys/Pera/Pera';
 import { getDatabase, ref, onValue , set , push ,remove } from "firebase/database";
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react';
+import { Oval } from 'react-loader-spinner';
 
 const Homefriend = () => {
     const alldata = useSelector((state) => state.logindata.value)
@@ -24,7 +25,24 @@ const Homefriend = () => {
             setFriendList(array)
         });
     },[])
-    console.log(friendList)
+    
+    let handelblockusers = (blockinfo)=>{
+        set(push(ref(db, 'blockedusers')), {
+            whereofblockid : blockinfo.whosenderid,
+            whereofblockname : blockinfo. whosendername,
+            whereofblockemail :blockinfo. whosenderemail,
+            whereofblockimg : blockinfo. whosenderimg,
+            receiverid : alldata.uid,
+            receivername :alldata.displayName,
+            receiveremail : alldata.email,
+            receiverimg :alldata.photoURL,
+
+        }).then (()=>{
+            remove(ref(db, 'userfriend/' + blockinfo.id))
+        })
+        alert("Block Succesful")
+        console.log(blockinfo)
+    }
   return (
     <section id='friend_list'>
         <div className='friend_list_wrapper_box'>
@@ -44,19 +62,35 @@ const Homefriend = () => {
                                         {
                                             alldata.uid == item. whosenderid
                                             ?
-                                            <h4 className='friend_list_profile_friend_name'>{item. whoreceivname}</h4>
+                                            <div>
+                                                <h4 className='friend_list_profile_friend_name'>{item. whoreceivname}</h4>
+                                                <Pera text="Today, 8:56pm"style="friend_time_jon"/>
+                                            </div>   
                                             :
-                                            <h4 className='friend_list_profile_friend_name'>{item.whosendername}</h4>
+                                            <div>
+                                                <h4 className='friend_list_profile_friend_name'>{item.whosendername}</h4>
+                                                <Pera text="Today, 8:56pm"style="friend_time_jon"/>
+                                            </div>
                                         }
                                     </div>
                                 </div>
-                                <div className='friend_list_profile_add_btn'>
-                                    <Pera text="Today, 8:56pm"style="friend_time_jon"/>
+                                <div className='friend_list_profile_add_btn_box'>
+                                    <button className='friend_list_profile_add_btn' onClick={()=>handelblockusers(item)}>Block</button>
                                 </div>
                             </div>
                         ))
                         :
-                        <h1>loding</h1>
+                        <div className='homefriendlist_oval_box'>
+                            <Oval
+                                visible={true}
+                                height="60"
+                                width="60"
+                                color="#fff"
+                                ariaLabel="oval-loading"
+                                wrapperStyle={{}}
+                                wrapperClass="oval"
+                            />
+                        </div>
                     }
                 </div>
             </Groupusers>

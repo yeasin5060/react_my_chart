@@ -11,7 +11,7 @@ const Homeblockuser = () => {
             <div className='block_user_profile_wrapper_box'>
                 {
                     [ 1 , 2 , 3 , 4 ,5 , 6 , 7 , 8 ].map((item , index)=>(
-                        <div className='block_user_profile_wrapper'>
+                        <div key={index} className='block_user_profile_wrapper'>
                             <div className='block_user_profile_box'>
                                 <div className='block_user_profile_image'>
                                     <img src={profileone} alt="" />

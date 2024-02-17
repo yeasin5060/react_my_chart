@@ -12,7 +12,7 @@ const Homemygroup = () => {
                 <div className='my_group_profile_wrapper_box'>
                     {
                         [ 1 , 2 , 3 , 4 ,5 , 6 , 7 , 8 ].map((item , index)=>(
-                            <div className='my_group_profile_wrapper'>
+                            <div key={index} className='my_group_profile_wrapper'>
                                 <div className='my_group_profile_box'>
                                     <div className='my_group_list_profile_image'>
                                         <img src={profileone} alt="" />

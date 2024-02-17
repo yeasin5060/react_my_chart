@@ -70,3 +70,27 @@
     line-height: normal;
     margin-top: 2px;
 }
+.friend_list_profile_add_btn_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.friend_list_profile_add_btn{
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: #5F35F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all linear 0.3s;
+    border: none;
+    color: #fff;
+}
+.homefriendlist_oval_box{
+    width: 320px;
+    height: 267px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
