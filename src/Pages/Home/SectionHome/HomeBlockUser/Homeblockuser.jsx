@@ -26,22 +26,21 @@ const Homeblockuser = () => {
     },[])
 
     let handelunblockuser = (unblockinfo)=>{
-       set(push(ref(db,"unblockuser")),{
-        whereofunblockid : unblockinfo. whereofblockid,
-        whereofunblockname : unblockinfo. whereofblockname,
-        whereofunblockemail :unblockinfo.whereofblockemail,
-        whereofunblockimg : unblockinfo. whereofblockimg,
-        receiverid : alldata.uid,
-        receivername :alldata.displayName,
-        receiveremail : alldata.email,
-        receiverimg :alldata.photoURL,
+       set(push(ref(db,"unblockusers")),{
+            whereofunblockid :unblockinfo.whereofblockid ,
+            whereofunblockname :unblockinfo.whereofblockname,
+            whereofunblockemail :unblockinfo.whereofblockemail,
+            whereofunblockimg :unblockinfo.whereofblockimg,
+            receiverid :alldata.uid,
+            receivername :alldata.displayName,
+            receiveremail :alldata.email,
+            receiverimg :alldata.photoURL,
        }).then (()=>{
-        remove(ref(db, 'blockedusers/' + unblockinfo.id))
-    })
-    alert("Unblock Succesful")
-    console.log(unblockinfo)
+            remove(ref(db, 'blockedusers/' + unblockinfo.id))
+        })
+        alert("Unblock Succesful")
+        console.log(unblockinfo)
     }
-
   return (
     <section id='block_user'>
     <div className='block_user_wrapper_box'>
