@@ -13,6 +13,7 @@ const HomeUserlist = () => {
     const db = getDatabase();
     let [userList , setUserList] = useState([])
     let [ request , setRequest] = useState([])
+    let [friendList , setFriendList] =useState([])
     
     useEffect(()=>{
         const userListRef = ref(db, 'usersdata');
@@ -26,7 +27,7 @@ const HomeUserlist = () => {
             setUserList(array)
         });
     },[])
-    console.log(userList)
+
     let sendrequest = (sendrequestinfo)=>{
         set(push(ref(db, 'friendrequest')), {
             senderid : alldata.uid,
@@ -39,11 +40,13 @@ const HomeUserlist = () => {
             receiveremail : sendrequestinfo.email,
         });
         alert("Friend Request Succesful")
-        setRequesttogol(true)
         console.log(sendrequestinfo)
     }
-    let cancelrequest = (cancel)=>{
-        
+    let cancelrequest = (cancelfriendrequest)=>{
+        if(senderid == receiverid){
+
+        }
+       console.log(cancelfriendrequest);
     }
 
     useEffect(()=>{
@@ -52,13 +55,26 @@ const HomeUserlist = () => {
                let array = []
             snapshot.forEach((item)=>{
                 if(alldata.uid == item.val().senderid){
-                    array.push(item.val() + item.val().receiverid)
+                    array.push(item.val().senderid + item.val().receiverid)
                 }
             })
             setRequest(array)
         });
     },[])
     console.log(request)
+
+    useEffect(()=>{
+        const requestRef = ref(db, 'userfriend');
+            onValue(requestRef, (snapshot) => {
+               let array = []
+            snapshot.forEach((item)=>{
+                if(alldata.uid == item.val().whoreceivid || alldata.uid == item.val().whosenderid){
+                    array.push(item.val().whoreceivid + item.val().whosenderid)
+                }
+            })
+            setFriendList(array)
+        });
+    },[])
   return (
     <section id='user_list'>
         <div className='user_list_search_box_wrapper'>
@@ -94,12 +110,23 @@ const HomeUserlist = () => {
                                     {
                                         request.includes(item.id + alldata.uid) || request.includes(alldata.uid + item.id)
                                         ?
-                                        <button onClick={() => cancelrequest (item)}          className='user_list_profile_btn'>
-                                            cancle
+                                        <div className='pending_and_cancel_flex'>
+                                            <button className='user_list_profile_btn'>
+                                                pendin
+                                            </button>
+                                            <button onClick={() => cancelrequest (item)} className='user_list_profile_btn'>
+                                                cancel
+                                            </button>
+                                        </div>
+                                        :
+                                        friendList.includes(item.id + alldata.uid) || friendList.includes(alldata.uid + item.id)
+                                        ?
+                                        <button className='user_list_profile_btn'>
+                                            Friend
                                         </button>
                                         :
-                                        <button onClick={() => sendrequest (item)}        className='user_list_profile_btn'>
-                                         add
+                                        <button onClick={() => sendrequest (item)}  className='user_list_profile_btn'>
+                                            add
                                         </button>
                                     }   
                                 </div>

@@ -108,17 +108,16 @@
     line-height: normal;
 }
 .user_list_profile_add_btn{
-    padding: 10px;
-    border-radius: 10px;
-    background: #5F35F5;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: all linear 0.3s;
 }
-.user_list_profile_add_btn:hover{
-    transform: translateY(-4px);
+.pending_and_cancel_flex{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    column-gap: 10px;
 }
 .user_list_profile_btn{
     border: none;
@@ -128,6 +127,13 @@
     color: #fff;
     cursor: pointer;
     background: transparent;
+    padding: 10px;
+    border-radius: 10px;
+    background: #5F35F5;
+    transition: all linear 0.3s;
+}
+.user_list_profile_btn:hover{
+    transform: translateY(-4px);
 }
 .user_list_profile_online{
     color: rgba(0, 0, 0, 0.50);
