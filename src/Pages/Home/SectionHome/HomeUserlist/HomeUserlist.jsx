@@ -75,6 +75,7 @@ const HomeUserlist = () => {
             setFriendList(array)
         });
     },[])
+    console.log(friendList)
   return (
     <section id='user_list'>
         <div className='user_list_search_box_wrapper'>
@@ -125,8 +126,9 @@ const HomeUserlist = () => {
                                             Friend
                                         </button>
                                         :
-                                        <button onClick={() => sendrequest (item)}  className='user_list_profile_btn'>
-                                            add
+                                        <button onClick={() => sendrequest (item)}
+                                         className='user_list_profile_btn'>
+                                          add
                                         </button>
                                     }   
                                 </div>

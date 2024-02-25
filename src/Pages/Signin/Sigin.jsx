@@ -43,7 +43,6 @@ const Sigin = () => {
             profileImage :userCredential.user.photoURL
           }).then(()=>{
             navigate("/login")
-            console.log(userCredential)
           });
         });
       });
