@@ -126,11 +126,11 @@ const Sigin = () => {
               </div>
               <div className='signin_page_input_group'>
                 <div className='inputbox'>
-                  <TextField id="outlined-basic" value={setSigindata.email} type='text' label=" Email Address" name ="email" onChange={handleSigin} variant="outlined"/>
+                  <TextField id="outlined-basic" value={setSigindata.email} type='email' label=" Email Address" name ="email" onChange={handleSigin} variant="outlined"/>
                   {siginvalidationerros.email && <p className='sigin_err'>{siginvalidationerros.email}</p>}
                 </div>
                 <div className='inputbox'>
-                  <TextField id="outlined-basic"  value={setSigindata.fullname} type='email' label="Ful name " name ="fullname" onChange={handleSigin} variant="outlined" />
+                  <TextField id="outlined-basic"  value={setSigindata.fullname} type='text' label="Ful name " name ="fullname" onChange={handleSigin} variant="outlined" />
                   {siginvalidationerros.fullname && <p className='sigin_err'>{siginvalidationerros.fullname}</p>}
                 </div>
                 <div className='inputbox_password'>

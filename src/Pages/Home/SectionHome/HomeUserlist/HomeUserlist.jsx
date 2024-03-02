@@ -27,7 +27,7 @@ const HomeUserlist = () => {
             setUserList(array)
         });
     },[])
-
+    console.log(userList)
     let sendrequest = (sendrequestinfo)=>{
         set(push(ref(db, 'friendrequest')), {
             senderid : alldata.uid,
