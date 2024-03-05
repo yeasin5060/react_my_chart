@@ -1,8 +1,18 @@
 import React from 'react'
+import './Message.css'
 
 const Message = () => {
   return (
-    <h1>Message</h1>
+    <section id='message_box'>
+      <div className='message_box_wrapper'>
+        <div className='message_friend_list_box'>
+
+        </div>
+        <div className='messageing_box'>
+
+        </div>
+      </div>
+    </section>
   )
 }
 
