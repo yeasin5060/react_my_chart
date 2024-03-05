@@ -15,6 +15,7 @@ const HomeUserlist = () => {
     let [ request , setRequest] = useState([])
     let [friendList , setFriendList] =useState([])
     
+            // All user data read operation 
     useEffect(()=>{
         const userListRef = ref(db, 'usersdata');
             onValue(userListRef, (snapshot) => {
@@ -27,13 +28,13 @@ const HomeUserlist = () => {
             setUserList(array)
         });
     },[])
-    console.log(userList)
     let sendrequest = (sendrequestinfo)=>{
-        set(push(ref(db, 'friendrequest')), {
+        set(ref(db, 'friendrequest/' + sendrequestinfo.id), {
             senderid : alldata.uid,
             sendername : alldata.displayName,
             senderimg : alldata.photoURL,
             senderemail : alldata.email,
+                //receiver part
             receiverid : sendrequestinfo.id,
             receivername : sendrequestinfo.username,
             receiverimg : sendrequestinfo.profileImage,
@@ -42,13 +43,15 @@ const HomeUserlist = () => {
         alert("Friend Request Succesful")
         console.log(sendrequestinfo)
     }
-    let cancelrequest = (cancelfriendrequest)=>{
-        if(senderid == receiverid){
 
-        }
-       console.log(cancelfriendrequest);
+            // user friend request cancle 
+    let cancelrequest = (cancelfriendrequest)=>{
+       remove(ref(db,"friendrequest/" + cancelfriendrequest.id)).then(()=>{
+        alert("Request Cancel")
+       })
     }
 
+        // user friend request data read operation 
     useEffect(()=>{
         const requestRef = ref(db, 'friendrequest');
             onValue(requestRef, (snapshot) => {
@@ -61,8 +64,8 @@ const HomeUserlist = () => {
             setRequest(array)
         });
     },[])
-    console.log(request)
 
+         // user Friends 
     useEffect(()=>{
         const requestRef = ref(db, 'userfriend');
             onValue(requestRef, (snapshot) => {
