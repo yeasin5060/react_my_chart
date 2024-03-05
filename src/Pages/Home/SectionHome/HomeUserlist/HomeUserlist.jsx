@@ -14,6 +14,7 @@ const HomeUserlist = () => {
     let [userList , setUserList] = useState([])
     let [ request , setRequest] = useState([])
     let [friendList , setFriendList] =useState([])
+    let [receiveRequest , setReceiveRequest] = useState([])
     
             // All user data read operation 
     useEffect(()=>{
@@ -56,15 +57,19 @@ const HomeUserlist = () => {
         const requestRef = ref(db, 'friendrequest');
             onValue(requestRef, (snapshot) => {
                let array = []
+               let requestarray = []
             snapshot.forEach((item)=>{
+                if(item.val().receiverid == alldata.uid){
+                    requestarray.push(item.val().receiverid + item.val().senderid)
+                }
                 if(alldata.uid == item.val().senderid){
                     array.push(item.val().senderid + item.val().receiverid)
                 }
             })
             setRequest(array)
+            setReceiveRequest(requestarray)
         });
     },[])
-
          // user Friends 
     useEffect(()=>{
         const requestRef = ref(db, 'userfriend');
@@ -78,7 +83,6 @@ const HomeUserlist = () => {
             setFriendList(array)
         });
     },[])
-    console.log(friendList)
   return (
     <section id='user_list'>
         <div className='user_list_search_box_wrapper'>
@@ -129,10 +133,14 @@ const HomeUserlist = () => {
                                             Friend
                                         </button>
                                         :
+                                         receiveRequest.includes(item.id + alldata.uid)
+                                        ?
                                         <button onClick={() => sendrequest (item)}
-                                         className='user_list_profile_btn'>
-                                          add
-                                        </button>
+                                        className='user_list_profile_btn'>
+                                         add
+                                       </button>
+                                        :
+                                        <button className='user_list_profile_btn'>Request</button>
                                     }   
                                 </div>
                             </div>
