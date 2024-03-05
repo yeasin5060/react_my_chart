@@ -11,7 +11,7 @@ import { Oval } from 'react-loader-spinner';
 const Homefriend = () => {
     const alldata = useSelector((state) => state.logindata.value)
     const db = getDatabase();
-    let [friendList , setFriendList] =useState()
+    let [friendList , setFriendList] =useState([])
     let [unBlockFriendlist , setUnBlockFriendList] = useState([])
 
     useEffect(()=>{
@@ -74,7 +74,7 @@ const Homefriend = () => {
                             
                                     <div className='friend_list_profile_name'>
                                         {
-                                            alldata.uid == item. whosenderid
+                                            alldata.uid == item.whosenderid
                                             ?
                                             <div>
                                                 <h4 className='friend_list_profile_friend_name'>{item. whoreceivname}</h4>

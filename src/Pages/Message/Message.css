@@ -1,7 +1,6 @@
 #message_box{
     width: 100%;
     height: 100vh;
-    background: red;
 }
 .message_box_wrapper{
     display: flex;
@@ -10,12 +9,91 @@
     column-gap: 100px;
 }
 .message_friend_list_box{
-    width: 400px;
+    width: 500px;
     height: 100vh;
-    background:wheat;
+    background:#fff;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 }
 .messageing_box{
-    width: 800px;
+    width: 700px;
     height: 100vh;
-    background:wheat;
+    background:#fff;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+.message_friend_list_head_box{
+    text-align: left;
+}
+.message_friend_list_head{
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    text-transform: capitalize;
+    padding: 10px 20px;
+    background:  #5F35F5;
+}
+.message_friend_list_users_box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    padding-right: 30px;
+    margin-top:34px ;
+}
+.message_friend_list_profile_wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    column-gap: 10px;
+    align-items: center;
+    padding: 10px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all linear 0.3s;
+}
+.message_friend_list_profile_wrapper:hover{
+    background: #3b383871;
+}
+.message_friend_list_profile_box{
+    display: flex;
+    justify-content: left;
+    column-gap: 10px;
+    align-items: center;
+}
+.message_friend_list_profile_image{
+    width: 52.182px;
+    height: 54.092px;
+    border-radius: 50%;
+}
+.message_friend_list_profile_box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.message_friend_list_profile_name{
+    margin-left: 10px;
+}
+.message_friend_list_profile_friend_name{
+    color: #000;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.message_friend_time_jon{
+    color: rgba(0, 0, 0, 0.50);
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.message_homefriendlist_oval_box{
+    width: 320px;
+    height: 267px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
