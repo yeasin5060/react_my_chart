@@ -6,7 +6,8 @@
     display: flex;
     align-items: center;
     justify-content: left;
-    column-gap: 100px;
+    column-gap: 50px;
+    padding-left: 40px;
 }
 .message_friend_list_box{
     width: 500px;
@@ -50,6 +51,7 @@
     column-gap: 10px;
     align-items: center;
     padding: 10px 10px;
+    margin-left: 10px;
     border-radius: 10px;
     cursor: pointer;
     transition: all linear 0.3s;
@@ -96,4 +98,88 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.messageing_box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.messageing_heading_box{
+    padding: 10px 20px;
+    background:  #5F35F5;
+}
+.messageing_heading{
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    text-transform: capitalize;
+}
+.messageing_active{
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    text-transform: capitalize;
+}
+.messageing_flex{
+    padding: 20px;
+}
+.sender_message_box{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.sender_message{
+    display: inline-block;
+    padding: 10px 20px;
+    background: #5F35F5;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #fff;
+}
+.receiver_message_box{
+    margin-bottom: 10px;
+}
+.receiever_message{
+    display: inline-block;
+    padding: 10px 20px;
+    background:rgba(100, 93, 93, 0.527);
+    border-radius: 10px;
+    font-size: 18px;
+    color: #000;
+}
+.messageing_input_box{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+    background-color: #5F35F5;
+    padding: 20px 0;
+}
+.message_input{
+    padding: 10px 20px;
+    background: transparent;
+    outline: none;
+    border: 1px solid #5a4444a6;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 10px;
+}
+.message_send_btn_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+.message_send_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    font-size: 30px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
 }

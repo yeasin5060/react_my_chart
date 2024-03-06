@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react';
 import Pera from '../../Utilys/Pera/Pera';
 import { Oval } from 'react-loader-spinner';
+import { IoSend } from "react-icons/io5";
 
 const Message = () => {
   const alldata = useSelector((state) => state.logindata.value)
@@ -75,7 +76,30 @@ const Message = () => {
             </div>
         </div>
         <div className='messageing_box'>
-            
+            <div className='messageing_heading_box'>
+              <Subheading text="yeasin" style="messageing_heading"/>
+              <Pera text="Active now" style="messageing_active"/>
+            </div>
+            <div className='messageing_flex' >
+                <div className='sender_message_box'>
+                    <Pera text="hi" style="sender_message"/>
+                </div>
+                <div className='receiver_message_box'>
+                  <Pera text="hello" style="receiever_message"/>
+                </div>
+                <div className='sender_message_box'>
+                    <Pera text="hi" style="sender_message"/>
+                </div>
+                <div className='receiver_message_box'>
+                  <Pera text="hello" style="receiever_message"/>
+                </div>
+            </div>
+            <div className='messageing_input_box'>
+              <input className='message_input' type="text" placeholder='inter youe message' />
+              <div className='message_send_btn_box'>
+                <button className='message_send_btn'><IoSend /></button>
+              </div>
+            </div>
         </div>
       </div>
     </section>
