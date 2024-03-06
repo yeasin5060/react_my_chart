@@ -60,16 +60,17 @@ const HomeUserlist = () => {
                let requestarray = []
             snapshot.forEach((item)=>{
                 if(item.val().receiverid == alldata.uid){
-                    requestarray.push(item.val().receiverid + item.val().senderid)
+                    requestarray.push(item.val().senderid + item.val().receiverid)
                 }
                 if(alldata.uid == item.val().senderid){
-                    array.push(item.val().senderid + item.val().receiverid)
+                    array.push(item.val().receiverid + item.val().senderid)
                 }
             })
             setRequest(array)
             setReceiveRequest(requestarray)
         });
     },[])
+        console.log(receiveRequest);
          // user Friends 
     useEffect(()=>{
         const requestRef = ref(db, 'userfriend');
@@ -135,12 +136,12 @@ const HomeUserlist = () => {
                                         :
                                          receiveRequest.includes(item.id + alldata.uid)
                                         ?
-                                        <button onClick={() => sendrequest (item)}
+                                        <button className='user_list_profile_btn'>Request</button>
+                                        :
+                                       <button onClick={() => sendrequest (item)}
                                         className='user_list_profile_btn'>
                                          add
                                        </button>
-                                        :
-                                        <button className='user_list_profile_btn'>Request</button>
                                     }   
                                 </div>
                             </div>
