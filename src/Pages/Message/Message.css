@@ -183,3 +183,12 @@
     color: #fff;
     cursor: pointer;
 }
+.message_undefind{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 600;
+    color: #000;
+    text-transform: capitalize;
+}

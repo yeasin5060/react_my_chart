@@ -68,7 +68,7 @@ const Homefriendrequest = () => {
                                     </div>
                                 </div>
                                 <div className='friend_request_profile_add_btn'>
-                                <button onClick={()=> requestdelete (item)}                     className='friend_request_accept'>Delete</button>
+                                <button onClick={()=> requestdelete (item)} className='friend_request_accept'>Delete</button>
                                     <button onClick={()=> requestconfirm(item)} className='friend_request_accept'>Confirm</button>
                                 </div>
                             </div>
