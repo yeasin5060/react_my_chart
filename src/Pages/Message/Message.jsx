@@ -34,8 +34,24 @@ let handleuser = (i)=>{
 }
 
 let sendmessage = ()=>{
+  set(push(ref(db , "messagedata")),{
+          //sender data
+    senderid : alldata.uid,
+    sendername : alldata.displayName,
+    senderimg : alldata.photoURL,
+    senderemail : alldata.email,
+    message : masTaxt,
+          //receiver data
+    receiverid : alldata.uid == messagedata.whoreceivid ? messagedata.whosenderid : messagedata.whoreceivid,
+    receivername : alldata.uid == messagedata.whoreceivid ? messagedata.whosendername: messagedata.whoreceivname,
+    receiverimg : alldata.uid == messagedata.whoreceivid ? messagedata.whosenderimg: messagedata.whoreceivimg,
+    receiveremail : alldata.uid == messagedata.whoreceivid ? messagedata.whosenderemail: messagedata.whoreceivemail,
 
+  }).then(()=>{
+    alert("message done")
+  })
 }
+console.log(messagedata)
   return (
     <section id='message_box'>
       <div className='message_box_wrapper'>
@@ -88,23 +104,21 @@ let sendmessage = ()=>{
             </div>
         </div>
         <div className='messageing_box'>
-        {
+          {
             messagedata != null
             ?
+            <>
             <div className='messageing_heading_box'>
-            <Subheading text={
-              messagedata &&
-              messagedata.whosenderid == alldata.uid
-              ?
-              messagedata.whoreceivname
-              :
-              messagedata.whosendername
-            } style="messageing_heading"/>
-            <Pera text="Active now" style="messageing_active"/>
+              <Subheading text={
+                messagedata &&
+                messagedata.whosenderid == alldata.uid
+                ?
+                messagedata.whoreceivname
+                :
+                messagedata.whosendername
+              } style="messageing_heading"/>
+              <Pera text="Active now" style="messageing_active"/>
             </div>
-            :
-            <Subheading text="Please Select a user" style="message_undefind"/>
-           }
             <div className='messageing_flex' >
                 <div className='sender_message_box'>
                     <Pera text="hi" style="sender_message"/>
@@ -125,6 +139,12 @@ let sendmessage = ()=>{
                 <button className='message_send_btn' onClick={sendmessage}><IoSend /></button>
               </div>
             </div>
+            </>
+            :
+            <div className='message_undefind_box'>
+              <Subheading text="Please Select a user" style="message_undefind"/>
+            </div>
+           }
         </div>
       </div>
     </section>
