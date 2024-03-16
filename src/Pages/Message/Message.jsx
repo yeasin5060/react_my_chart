@@ -16,6 +16,7 @@ const Message = () => {
   const [friendList , setFriendList] =useState([])
   const [masTaxt , setMasText] = useState("")
   const dispatch = useDispatch()
+  const [messageList , setMessageList] = useState([])
   useEffect(()=>{
     const requestRef = ref(db, 'userfriend');
         onValue(requestRef, (snapshot) => {
@@ -51,7 +52,20 @@ let sendmessage = ()=>{
     alert("message done")
   })
 }
-console.log(messagedata)
+
+useEffect(()=>{
+  const requestRef = ref(db, 'messagedata');
+      onValue(requestRef, (snapshot) => {
+         let array = []
+      snapshot.forEach((item)=>{
+          if(alldata.uid == item.val().whoreceivid || alldata.uid == item.val().whosenderid){
+              array.push({...item.val(),id:item.key})
+          }
+      })
+      setMessageList(array)
+  });
+},[])
+console.log(messageList)
   return (
     <section id='message_box'>
       <div className='message_box_wrapper'>
