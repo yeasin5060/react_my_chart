@@ -50,6 +50,7 @@ let sendmessage = ()=>{
 
   }).then(()=>{
     alert("message done")
+    setMasText("")
   })
 }
 
@@ -58,7 +59,7 @@ useEffect(()=>{
       onValue(requestRef, (snapshot) => {
          let array = []
       snapshot.forEach((item)=>{
-          if(alldata.uid == item.val().whoreceivid || alldata.uid == item.val().whosenderid){
+          if(true /*alldata.uid == messagedata.whoreceivid || alldata.uid == messagedata.whosenderid*/){
               array.push({...item.val(),id:item.key})
           }
       })
@@ -66,6 +67,7 @@ useEffect(()=>{
   });
 },[])
 console.log(messageList)
+
   return (
     <section id='message_box'>
       <div className='message_box_wrapper'>
@@ -134,18 +136,13 @@ console.log(messageList)
               <Pera text="Active now" style="messageing_active"/>
             </div>
             <div className='messageing_flex' >
-                <div className='sender_message_box'>
-                    <Pera text="hi" style="sender_message"/>
-                </div>
-                <div className='receiver_message_box'>
-                  <Pera text="hello" style="receiever_message"/>
-                </div>
-                <div className='sender_message_box'>
-                    <Pera text="hi" style="sender_message"/>
-                </div>
-                <div className='receiver_message_box'>
-                  <Pera text="hello" style="receiever_message"/>
-                </div>
+              {
+                messageList.map((item , index)=>(
+                  <div key={index} className='sender_message_box'>
+                    <Pera text={item.message} style="sender_message"/>
+                  </div>
+                ))
+              }
             </div>
             <div className='messageing_input_box'>
               <input className='message_input' type="text" placeholder='inter youe message' onChange={(e)=> setMasText(e.target.value)} />
