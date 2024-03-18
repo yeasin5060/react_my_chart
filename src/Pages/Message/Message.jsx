@@ -59,7 +59,7 @@ useEffect(()=>{
       onValue(requestRef, (snapshot) => {
          let array = []
       snapshot.forEach((item)=>{
-          if(true /*alldata.uid == messagedata.whoreceivid || alldata.uid == messagedata.whosenderid*/){
+          if( alldata.uid == item.val(). receiverid || alldata.uid == item.val().senderid ){
               array.push({...item.val(),id:item.key})
           }
       })
