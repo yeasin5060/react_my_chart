@@ -57,16 +57,19 @@ let sendmessage = ()=>{
 useEffect(()=>{
   const requestRef = ref(db, 'messagedata');
       onValue(requestRef, (snapshot) => {
-         let array = []
+         let array = [];
+         let activeuserid = messagedata.whosenderid == alldata.uid ? messagedata.whoreceivid : messagedata.whosenderid;
+         console.log(activeuserid);
       snapshot.forEach((item)=>{
-          if( alldata.uid == item.val(). receiverid || alldata.uid == item.val().senderid ){
-              array.push({...item.val(),id:item.key})
+          if((item.val().senderid == alldata.uid && item.val().receiverid == activeuserid) || (item.val().receiverid == alldata.uid && item.val().senderid == activeuserid ) ){
+              array.push({...item.val(),id:item.key});
           }
       })
       setMessageList(array)
   });
 },[])
 console.log(messageList)
+console.log(messagedata);
 
   return (
     <section id='message_box'>
@@ -138,8 +141,8 @@ console.log(messageList)
             <div className='messageing_flex' >
               {
                 messageList.map((item , index)=>(
-                  <div key={index} className='sender_message_box'>
-                    <Pera text={item.message} style="sender_message"/>
+                  <div key={index} className={`${item.receiverid == alldata.uid ?"receiever_message_box" : "sender_message_box" }`}>
+                    <p>{item.message}</p>
                   </div>
                 ))
               }

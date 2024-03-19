@@ -122,14 +122,11 @@
 }
 .messageing_flex{
     padding: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 .sender_message_box{
     margin-bottom: 10px;
-    display: flex;
-    justify-content: flex-end;
-}
-.sender_message{
-    display: inline-block;
     padding: 10px 20px;
     background: #5F35F5;
     border-radius: 10px;
@@ -138,15 +135,13 @@
 }
 .receiver_message_box{
     margin-bottom: 10px;
-}
-.receiever_message{
-    display: inline-block;
     padding: 10px 20px;
     background:rgba(100, 93, 93, 0.527);
     border-radius: 10px;
     font-size: 18px;
     color: #000;
 }
+
 .messageing_input_box{
     width: 100%;
     display: flex;
