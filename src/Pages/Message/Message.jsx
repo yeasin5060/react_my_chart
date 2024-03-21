@@ -48,10 +48,9 @@ let sendmessage = ()=>{
     receiverimg : alldata.uid == messagedata.whoreceivid ? messagedata.whosenderimg: messagedata.whoreceivimg,
     receiveremail : alldata.uid == messagedata.whoreceivid ? messagedata.whosenderemail: messagedata.whoreceivemail,
 
-  }).then(()=>{
+  })
     alert("message done")
     setMasText("")
-  })
 }
 
 useEffect(()=>{
@@ -59,7 +58,6 @@ useEffect(()=>{
       onValue(requestRef, (snapshot) => {
          let array = [];
          let activeuserid = messagedata.whosenderid == alldata.uid ? messagedata.whoreceivid : messagedata.whosenderid;
-         console.log(activeuserid);
       snapshot.forEach((item)=>{
           if((item.val().senderid == alldata.uid && item.val().receiverid == activeuserid) || (item.val().receiverid == alldata.uid && item.val().senderid == activeuserid ) ){
               array.push({...item.val(),id:item.key});
@@ -67,10 +65,7 @@ useEffect(()=>{
       })
       setMessageList(array)
   });
-},[])
-console.log(messageList)
-console.log(messagedata);
-
+},[messagedata])
   return (
     <section id='message_box'>
       <div className='message_box_wrapper'>

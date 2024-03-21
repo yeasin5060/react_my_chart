@@ -121,25 +121,35 @@
     text-transform: capitalize;
 }
 .messageing_flex{
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
+    padding:20px;
 }
 .sender_message_box{
-    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 10px;
+}
+.sender_message_box p{
+    margin-bottom: 15px;
     padding: 10px 20px;
     background: #5F35F5;
     border-radius: 10px;
     font-size: 18px;
     color: #fff;
+    display: inline-flex;
 }
-.receiver_message_box{
-    margin-bottom: 10px;
+.receiever_message_box{
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 10px;
+}
+.receiever_message_box p{
+    margin-bottom: 15px;
     padding: 10px 20px;
-    background:rgba(100, 93, 93, 0.527);
+    background:rgba(8, 7, 7, 0.39);
     border-radius: 10px;
     font-size: 18px;
     color: #000;
+    display: inline-flex;
 }
 
 .messageing_input_box{
