@@ -122,6 +122,7 @@
 }
 .messageing_flex{
     padding:20px;
+    overflow: scroll;
 }
 .sender_message_box{
     display: flex;

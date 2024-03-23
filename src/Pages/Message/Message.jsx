@@ -8,15 +8,17 @@ import Pera from '../../Utilys/Pera/Pera';
 import { Oval } from 'react-loader-spinner';
 import { IoSend } from "react-icons/io5";
 import { activemessagedata } from '../../Slice/messageslice';
+import { AiFillLike } from "react-icons/ai";
 
 const Message = () => {
   const alldata = useSelector((state) => state.logindata.value)
   const messagedata = useSelector((state) => state.activemessage.value)
   const db = getDatabase();
   const [friendList , setFriendList] =useState([])
-  const [masTaxt , setMasText] = useState("")
+  let [masTaxt , setMasText] = useState("")
   const dispatch = useDispatch()
   const [messageList , setMessageList] = useState([])
+  let [togolbtn , setTogolbtn] = useState(false)
   useEffect(()=>{
     const requestRef = ref(db, 'userfriend');
         onValue(requestRef, (snapshot) => {
@@ -49,8 +51,7 @@ let sendmessage = ()=>{
     receiveremail : alldata.uid == messagedata.whoreceivid ? messagedata.whosenderemail: messagedata.whoreceivemail,
 
   })
-    alert("message done")
-    setMasText("")
+  setMasText(" ")
 }
 
 useEffect(()=>{
@@ -66,6 +67,11 @@ useEffect(()=>{
       setMessageList(array)
   });
 },[messagedata])
+
+let handleMessage = (e)=>{
+  setMasText(e.target.value)
+  setTogolbtn(true)
+}
   return (
     <section id='message_box'>
       <div className='message_box_wrapper'>
@@ -143,10 +149,18 @@ useEffect(()=>{
               }
             </div>
             <div className='messageing_input_box'>
-              <input className='message_input' type="text" placeholder='inter youe message' onChange={(e)=> setMasText(e.target.value)} />
-              <div className='message_send_btn_box'>
-                <button className='message_send_btn' onClick={sendmessage}><IoSend /></button>
-              </div>
+              <input className='message_input' type="text" placeholder='inter youe message' value={masTaxt} onChange={handleMessage} />
+              {
+                togolbtn
+                  ?
+                  <div className='message_send_btn_box'>
+                    <button className='message_send_btn' onClick={sendmessage}><IoSend /></button>
+                  </div>
+                  :
+                  <div className='message_send_btn_box'>
+                    <button className='message_send_btn'><AiFillLike /></button>
+                  </div>
+              }
             </div>
             </>
             :
