@@ -10,14 +10,14 @@ import { Oval } from 'react-loader-spinner';
 const Homeblockuser = () => {
     const alldata = useSelector((state) => state.logindata.value)
     const db = getDatabase();
-     let [blockList , setBlockList] = useState()
+     let [blockList , setBlockList] = useState([])
 
      useEffect(()=>{
         const blockListRef = ref(db, 'blockedusers');
             onValue(blockListRef, (snapshot) => {
                let array = []
             snapshot.forEach((item)=>{
-                if(alldata.uid != item.val().whereofblockemail){
+                if(alldata.uid == item.val().receiverid){
                     array.push({...item.val(),id:item.key})
                 }
             })
@@ -29,6 +29,7 @@ const Homeblockuser = () => {
             remove(ref(db, 'blockedusers/' + unblockinfo.id))
                 alert("Unblock Succesful")
     }
+    console.log(blockList);
   return (
     <section id='block_user'>
     <div className='block_user_wrapper_box'>
@@ -41,13 +42,22 @@ const Homeblockuser = () => {
                         <div key={index} className='block_user_profile_wrapper'>
                             <div className='block_user_profile_box'>
                                 <div className='block_user_profile_image'>
-                                    <img src={item.whereofblockimg} alt="" />
+                                    <img src={alldata.uid == item.whereofblockid ? item.receiverimg : item. whereofblockimg} alt="not found" />
                                 </div>
-                        
-                                <div className='block_user_profile_name'>
-                                    <h4 className='block_user_profile_friend_name'>{item. whereofblockname}</h4>
-                                    <h5 className='block_user_profile_online'>56pm</h5>
-                                </div>
+                                {
+                                    alldata.whereofblockid
+                                    ?
+                                    <div className='block_user_profile_name'>
+                                        <h4 className='block_user_profile_friend_name'>{item.receivername}</h4>
+                                        <h5 className='block_user_profile_online'>56pm</h5>
+                                    </div>
+                                    :
+                                    <div className='block_user_profile_name'>
+                                        <h4 className='block_user_profile_friend_name'>{item.whereofblockname}</h4>
+                                        <h5 className='block_user_profile_online'>56pm</h5>
+                                    </div>
+                                }
+
                             </div>
                             <div className='block_user_profile_add_btn'>
                                <button onClick={()=>handelunblockuser (item)} className='block_user_accept'>unblock</button>

@@ -70,7 +70,6 @@ const HomeUserlist = () => {
             setReceiveRequest(requestarray)
         });
     },[])
-        console.log(receiveRequest);
          // user Friends 
     useEffect(()=>{
         const requestRef = ref(db, 'userfriend');
