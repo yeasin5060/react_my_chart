@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './Homeblockuser.css'
-import profileone from '../../../../images/profileone.png';
 import Groupusers from '../../../../Components/Groupusers/Groupusers'
 import { getDatabase, ref, onValue , set , push ,remove } from "firebase/database";
 import { useSelector, useDispatch } from 'react-redux'
@@ -17,7 +16,7 @@ const Homeblockuser = () => {
             onValue(blockListRef, (snapshot) => {
                let array = []
             snapshot.forEach((item)=>{
-                if(alldata.uid == item.val().receiverid){
+                if(alldata.uid == item.val().receiverid || item.val().whereofblockid){
                     array.push({...item.val(),id:item.key})
                 }
             })
@@ -42,10 +41,10 @@ const Homeblockuser = () => {
                         <div key={index} className='block_user_profile_wrapper'>
                             <div className='block_user_profile_box'>
                                 <div className='block_user_profile_image'>
-                                    <img src={alldata.uid == item.whereofblockid ? item.receiverimg : item. whereofblockimg} alt="not found" />
+                                    <img src={alldata.uid == item.whereofblockid ? item.receiverimg : item.whereofblockimg} alt="not found" />
                                 </div>
                                 {
-                                    alldata.whereofblockid
+                                    alldata.uid == item.whereofblockid
                                     ?
                                     <div className='block_user_profile_name'>
                                         <h4 className='block_user_profile_friend_name'>{item.receivername}</h4>
@@ -53,7 +52,7 @@ const Homeblockuser = () => {
                                     </div>
                                     :
                                     <div className='block_user_profile_name'>
-                                        <h4 className='block_user_profile_friend_name'>{item.whereofblockname}</h4>
+                                        <h4 className='block_user_profile_friend_name'>{ item.whereofblockname}</h4>
                                         <h5 className='block_user_profile_online'>56pm</h5>
                                     </div>
                                 }

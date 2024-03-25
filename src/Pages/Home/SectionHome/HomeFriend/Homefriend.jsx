@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './Homefriend.css'
-import profileone from '../../../../images/profileone.png';
 import Groupusers from '../../../../Components/Groupusers/Groupusers'
 import Pera from '../../../../Utilys/Pera/Pera';
 import { getDatabase, ref, onValue , set , push ,remove } from "firebase/database";
@@ -46,17 +45,17 @@ const Homefriend = () => {
             whereofblockname : blockinfo.whosendername,
             whereofblockemail :blockinfo.whosenderemail,
             whereofblockimg : blockinfo.whosenderimg,
-            receiverid : alldata.uid,
-            receivername :alldata.displayName,
-            receiveremail : alldata.email,
-            receiverimg :alldata.photoURL,
+            receiverid : alldata.uid == blockinfo.whoreceivid ? blockinfo.whosenderid : blockinfo.whoreceivid,
+            receivername :alldata == blockinfo.whoreceivid ? blockinfo.whosendername : blockinfo.whoreceivname,
+            receiveremail : alldata == blockinfo.whoreceivid ? blockinfo.whosenderemail : blockinfo.whoreceivemail,
+            receiverimg :alldata == blockinfo.whoreceivid ? blockinfo.whosenderimg : blockinfo.whoreceivimg,
 
         }).then (()=>{
             remove(ref(db, 'userfriend/' + blockinfo.id))
         })
         alert("Block Succesful")
+        console.log(blockinfo);
     }
-
   return (
     <section id='friend_list'>
         <div className='friend_list_wrapper_box'>
