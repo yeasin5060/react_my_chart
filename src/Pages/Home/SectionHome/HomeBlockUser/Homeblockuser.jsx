@@ -52,7 +52,7 @@ const Homeblockuser = () => {
                                     </div>
                                     :
                                     <div className='block_user_profile_name'>
-                                        <h4 className='block_user_profile_friend_name'>{ item.whereofblockname}</h4>
+                                        <h4 className='block_user_profile_friend_name'>{item.whereofblockname}</h4>
                                         <h5 className='block_user_profile_online'>56pm</h5>
                                     </div>
                                 }
