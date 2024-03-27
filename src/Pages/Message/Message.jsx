@@ -9,6 +9,7 @@ import { Oval } from 'react-loader-spinner';
 import { IoSend } from "react-icons/io5";
 import { activemessagedata } from '../../Slice/messageslice';
 import { AiFillLike } from "react-icons/ai";
+import EmojiPicker from 'emoji-picker-react';
 
 const Message = () => {
   const alldata = useSelector((state) => state.logindata.value)
@@ -18,6 +19,7 @@ const Message = () => {
   let [masTaxt , setMasText] = useState("")
   const dispatch = useDispatch()
   const [messageList , setMessageList] = useState([])
+  const [ emojiShow , setEmojiShow] = useState(false)
   useEffect(()=>{
     const requestRef = ref(db, 'userfriend');
         onValue(requestRef, (snapshot) => {
@@ -90,6 +92,9 @@ let handleKeyUp = (e)=>{
       setMasText("")
     })
   }
+}
+let handleEmojiPicker = (e)=>{
+  setMasText(masTaxt + e.emoji);
 }
   return (
     <section id='message_box'>
@@ -170,16 +175,19 @@ let handleKeyUp = (e)=>{
             <div className='messageing_input_box'>
               <input className='message_input' type="text" onKeyUp={handleKeyUp} placeholder='inter youe message' value={masTaxt} onChange={handleMessage} />
               {
-                masTaxt &&
-                masTaxt.length > 0
-                  ?
-                  <div className='message_send_btn_box'>
-                    <button className='message_send_btn' onClick={sendmessage}><IoSend /></button>
-                  </div>
-                  :
-                  <div className='message_send_btn_box'>
-                    <button className='message_send_btn'><AiFillLike /></button>
-                  </div>
+                masTaxt.length > 0 &&
+                <div className='message_send_btn_box'>
+                  <button className='message_send_btn' onClick={sendmessage}><IoSend /></button>
+                </div>
+              }
+              <div className='message_send_btn_box'>
+                <button className='message_send_btn' onClick={()=> setEmojiShow(!emojiShow)}><AiFillLike /></button>
+              </div>
+              {
+                emojiShow &&
+                <div className='emoji_picker_box'>
+                  <EmojiPicker onEmojiClick ={handleEmojiPicker} />
+                </div>
               }
             </div>
             </>

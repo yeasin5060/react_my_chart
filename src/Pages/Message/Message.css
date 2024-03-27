@@ -161,6 +161,7 @@
     column-gap: 20px;
     background-color: #5F35F5;
     padding: 20px 0;
+    position: relative;
 }
 .message_input{
     padding: 10px 20px;
@@ -201,4 +202,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.emoji_picker_box{
+    position: absolute;
+    right: 0;
+    bottom: 100px;
 }
