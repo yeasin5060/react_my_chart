@@ -18,7 +18,6 @@ const Message = () => {
   let [masTaxt , setMasText] = useState("")
   const dispatch = useDispatch()
   const [messageList , setMessageList] = useState([])
-  let [togolbtn , setTogolbtn] = useState(false)
   useEffect(()=>{
     const requestRef = ref(db, 'userfriend');
         onValue(requestRef, (snapshot) => {
@@ -50,8 +49,9 @@ let sendmessage = ()=>{
     receiverimg : alldata.uid == messagedata.whoreceivid ? messagedata.whosenderimg: messagedata.whoreceivimg,
     receiveremail : alldata.uid == messagedata.whoreceivid ? messagedata.whosenderemail: messagedata.whoreceivemail,
 
+  }).then = (()=>{
+    setMasText("")
   })
-  setMasText(" ")
 }
 
 useEffect(()=>{
@@ -70,7 +70,26 @@ useEffect(()=>{
 
 let handleMessage = (e)=>{
   setMasText(e.target.value)
-  setTogolbtn(true)
+}
+let handleKeyUp = (e)=>{
+  if(e.key == "Enter"){
+    set(push(ref(db , "messagedata")),{
+      //sender data
+      senderid : alldata.uid,
+      sendername : alldata.displayName,
+      senderimg : alldata.photoURL,
+      senderemail : alldata.email,
+      message : masTaxt,
+          //receiver data
+      receiverid : alldata.uid == messagedata.whoreceivid ? messagedata.whosenderid : messagedata.whoreceivid,
+      receivername : alldata.uid == messagedata.whoreceivid ? messagedata.whosendername: messagedata.whoreceivname,
+      receiverimg : alldata.uid == messagedata.whoreceivid ? messagedata.whosenderimg: messagedata.whoreceivimg,
+      receiveremail : alldata.uid == messagedata.whoreceivid ? messagedata.whosenderemail: messagedata.whoreceivemail,
+  
+    }).then = (()=>{
+      setMasText("")
+    })
+  }
 }
   return (
     <section id='message_box'>
@@ -149,9 +168,10 @@ let handleMessage = (e)=>{
               }
             </div>
             <div className='messageing_input_box'>
-              <input className='message_input' type="text" placeholder='inter youe message' value={masTaxt} onChange={handleMessage} />
+              <input className='message_input' type="text" onKeyUp={handleKeyUp} placeholder='inter youe message' value={masTaxt} onChange={handleMessage} />
               {
-                togolbtn
+                masTaxt &&
+                masTaxt.length > 0
                   ?
                   <div className='message_send_btn_box'>
                     <button className='message_send_btn' onClick={sendmessage}><IoSend /></button>
