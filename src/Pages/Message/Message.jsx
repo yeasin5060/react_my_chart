@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect , useRef } from 'react'
 import './Message.css'
 import Subheading from '../../Utilys/Subheading/Subheading'
 import { getDatabase, ref, onValue , set , push ,remove } from "firebase/database";
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react';
 import Pera from '../../Utilys/Pera/Pera';
 import { Oval } from 'react-loader-spinner';
 import { IoSend } from "react-icons/io5";
@@ -20,6 +19,7 @@ const Message = () => {
   const dispatch = useDispatch()
   const [messageList , setMessageList] = useState([])
   const [ emojiShow , setEmojiShow] = useState(false)
+  const emojiref = useRef()
   useEffect(()=>{
     const requestRef = ref(db, 'userfriend');
         onValue(requestRef, (snapshot) => {
@@ -96,6 +96,15 @@ let handleKeyUp = (e)=>{
 let handleEmojiPicker = (e)=>{
   setMasText(masTaxt + e.emoji);
 }
+useEffect (()=>{
+  document.body.addEventListener("click",(e)=>{
+    if(emojiref.current.contains(e.target)){
+      setEmojiShow(true)
+    }else{
+      setEmojiShow(false)
+    }
+  })
+},[])
   return (
     <section id='message_box'>
       <div className='message_box_wrapper'>
@@ -181,7 +190,7 @@ let handleEmojiPicker = (e)=>{
                 </div>
               }
               <div className='message_send_btn_box'>
-                <button className='message_send_btn' onClick={()=> setEmojiShow(!emojiShow)}><AiFillLike /></button>
+                <button className='message_send_btn' ref={emojiref} onClick={()=> setEmojiShow(!emojiShow)}><AiFillLike /></button>
               </div>
               {
                 emojiShow &&
