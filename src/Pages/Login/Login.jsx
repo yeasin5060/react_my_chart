@@ -13,7 +13,7 @@ import { IoClose } from "react-icons/io5";
 import { IoIosEye } from "react-icons/io";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { Modal, Typography } from '@mui/material';
-import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signOut , sendPasswordResetEmail} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { loginuserdata } from '../../Slice/Userslice';
@@ -120,30 +120,46 @@ const Login = () => {
   const handleClose = () => setOpen(false);
 
   let forgetclose = ()=>{
-    setOpen(true)
+    setOpen(false)
   }
 
-  let [sendLink, setSendLink] = useState({})
-  let handlesend = ()=>{
-     setSendLink(linkValidation(formdata))
+  let [sendLink, setSendLink] = useState({
+    forgetemail : "",
+  })
+  let [senLinkErr , setSendLinkErr] = useState({})
+  let handleLink = (e)=>{
+   let {name , value} = e.target;
+   setSendLink({...sendLink,[name]:value})
   }
-  function linkValidation(formdata){
-      sendLink = {}
+  let handlesend = ()=>{
+     setSendLinkErr(linkValidation(sendLink))
+      sendPasswordResetEmail(auth, sendLink.forgetemail)
+      .then(() => {
+        console.log("reset password secessfull");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  }
+  function linkValidation(sendLink){
+    senLinkErr = {}
       let email_pattern = /^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/;
       // ====================== email ==============
 
-      if(formdata.email == ""){
-        sendLink.email = "Email is Repuired!"
+      if(sendLink.forgetemail == ""){
+        senLinkErr.forgetemail = "Email is Repuired!"
     }
     else{
-        if(email_pattern.test(formdata.email)){
-          sendLink.email = " ";
+        if(email_pattern.test(sendLink.forgetemail)){
+          senLinkErr.forgetemail = "";
         }
         else{
-          sendLink.email = "Inter validate Email";
+          senLinkErr.forgetemail = "Inter validate Email";
         }
       }
-      return (sendLink);
+      return (senLinkErr);
   }
   let [ reactLoder , setReactLoder] = useState (false)
 
@@ -226,8 +242,8 @@ const Login = () => {
            Forget Password
           </Typography>
           <div className='login_page_forget_email'>
-            <TextField id="outlined-basic" type='email' label=" Email Address" variant="standard" name = "email" onChange={handleform} />
-            {sendLink.email && <p className='forget_err'>{sendLink.email}</p>}
+            <TextField id="outlined-basic" type='email' label=" Email Address" variant="standard"  name = "forgetemail" onChange={handleLink} />
+            {senLinkErr.forgetemail && <p className='forget_err'>{senLinkErr.forgetemail}</p>}
             <button onClick={handlesend} className='forget_password_btn' >Send link</button>
           </div>
         </Box>
