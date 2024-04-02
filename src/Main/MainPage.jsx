@@ -16,6 +16,7 @@ import { redirect , useNavigate } from "react-router-dom";
 import { loginuserdata } from '../Slice/Userslice';
 import { useSelector, useDispatch } from 'react-redux'
 import Subheading from '../Utilys/Subheading/Subheading';
+//import { googleuserdata } from '../Slice/googleslice';
 
 const style = {
     position: 'absolute',
@@ -40,6 +41,9 @@ const Item = styled(Paper)(({ theme }) => ({
 const MainPage = () => {
 
     const alldata = useSelector((state) => state.logindata.value)
+    console.log(alldata);
+    //const googlealldata = useSelector((state)=> state.googledata.value)
+    //console.log(googlealldata);
     const auth = getAuth();
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -49,7 +53,9 @@ const MainPage = () => {
     let handlelogout = ()=>{
         signOut(auth).then(()=>{
             localStorage.removeItem("user")
+            //localStorage.removeItem("googleuser")
             dispatch(loginuserdata(null))
+            //dispatch(googleuserdata(null))
             navigate("/login")
         })
     }

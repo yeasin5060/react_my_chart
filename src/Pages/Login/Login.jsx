@@ -18,6 +18,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { loginuserdata } from '../../Slice/Userslice';
 import { Oval } from 'react-loader-spinner';
+import { getDatabase, ref, set } from "firebase/database";
+//import { googleuserdata } from '../../Slice/googleslice';
 
 const style = {
   position: 'absolute',
@@ -42,8 +44,9 @@ const Item = styled(Paper)(({ theme }) => ({
 const Login = () => {
 
   const auth = getAuth();
+  const db = getDatabase();
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const provider = new GoogleAuthProvider();
   let [ formdata , setFormdata] = useState({
     email: "",
@@ -180,8 +183,19 @@ const Login = () => {
         email: user.email,
         profileImage :user.photoURL
       }).then(()=>{
-          navigate("/login")
+          navigate("/home")
+      });
+      /*if(user){
+        localStorage.setItem("googleuser",JSON.stringify(user))
+        dispatch(googleuserdata(user))
+        set(ref(db, 'usersdata/' + user.uid), {
+          username: user.displayName,
+          email: user.email,
+          profileImage :user.photoURL
+        }).then(()=>{
+            navigate("/home")
         });
+      }*/
     }).catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
@@ -190,6 +204,7 @@ const Login = () => {
       console.log(errorMessage);
       // The email of the user's account used.
       const email = error.customData.email;
+      console.log(email);
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
