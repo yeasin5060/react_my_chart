@@ -13,7 +13,7 @@ import { IoClose } from "react-icons/io5";
 import { IoIosEye } from "react-icons/io";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { Modal, Typography } from '@mui/material';
-import { getAuth, signInWithEmailAndPassword, signOut , sendPasswordResetEmail} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signOut , sendPasswordResetEmail ,GoogleAuthProvider,signInWithPopup} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { loginuserdata } from '../../Slice/Userslice';
@@ -44,6 +44,7 @@ const Login = () => {
   const auth = getAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch()
+  const provider = new GoogleAuthProvider();
   let [ formdata , setFormdata] = useState({
     email: "",
     password: ""
@@ -163,6 +164,38 @@ const Login = () => {
   }
   let [ reactLoder , setReactLoder] = useState (false)
 
+      //gmail handle with google
+  let handlegoogle = ()=>{
+    signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+      set(ref(db, 'usersdata/' + user.uid), {
+        username: user.displayName,
+        email: user.email,
+        profileImage :user.photoURL
+      }).then(()=>{
+          navigate("/login")
+        });
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      console.log(errorCode);
+      const errorMessage = error.message;
+      console.log(errorMessage);
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
+  }
+
   return (
     <section id='login_page'>
       <Box sx = {{flexGrow : 1}}>
@@ -171,8 +204,8 @@ const Login = () => {
           <div className='login_page_form'>
               <div className='login_page_form_head'>
                 <Subheading text="Login to your account!" style="login_page_head"/>
-                <div className='login_page_link_google_wrapper'>
-                    <Link className='login_page_link_google'  to="https://www.google.com" target='blank'>
+                <div onClick={handlegoogle} className='login_page_link_google_wrapper'>
+                    <Link className='login_page_link_google'>
                       <img src={google} alt="not found" />
                       <span className='login_page_google'>Login with Google</span>
                     </Link>
